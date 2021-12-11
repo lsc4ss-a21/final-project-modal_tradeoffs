@@ -9,16 +9,16 @@ In the past work looking at modal tradeoffs within Chicago, we were examining tr
 For this project, I set out to calculate travel times between every building in a city to the city center via various modes of transportation including driving, biking, walking, and public transportation.  The two cities I worked with were Toronto (with the city center set as the center of downtown) and New York City (with the city center set as Grand Central Station).
 
 ## Workflow
-1. Preprocessing
-- Dask_Prepare Inputs-NYC.ipynb
-- Batch_public_transport-NYC.ipynb
-2. Calculations
-- EC2 - Updated NYC.ipynb
-- build_NYC.sh
-3. Analysis
-- Combine Output.ipynb
-4. Visualizations
-- Visualizations.ipynb
+1. [Preprocessing](1_Preprocessing)
+- Dask_Prepare Inputs-City.ipynb
+- Batch_public_transport-City.ipynb
+2. [Calculations](2_Calculations)
+- Set up EC2s - City.ipynb
+- build_City.sh 
+3. [Analysis](3_Analysis)
+- Combine Output-City.ipynb
+4. [Visualizations](4_Visualizations)
+- Visualizations-City.ipynb
 
 ## Data
 For this project, I used the following input datasets
@@ -50,7 +50,15 @@ I also created a new variable that was the ratio of the public transportation tr
 I used Holoviews to visualize the distribution of buildings in each city and the travel times by mode, and I used Datashader to create heat maps for the average time it takes to get to city center by mode.
 
 ## Results
-- [Include screenshots of visualizations]
+Below are some examples of visualizations from the Toronto output:  
+So here a map made with holoviews of the distribution of buildings in my Toronto dataset.  As we can see, there are a ton of points, which makes it hard to glean much from this.
+![Toronto Holoviews full](4_Visualizations/Images/Toronto_Holoviews_full.png)
+Therefore, we can sample to just a random selection of points to get a clearer view.
+![Toronto Holoviews sampled](4_Visualizations/Images/Toronto_Holoviews_sampled.png)
+Now when we zoom in, we can see that there are certain regions with more clumps of buildings than other, and we can hover over a point to find the travel time by mode of transit
+![Toronto Holoviews sampled zoom in](4_Visualizations/Images/Toronto_Holoviews_sampled_zoomed.png)
+Finally we can also use datashader to create a heat map.  For instance, here we’re looking at how long it takes to get to city center by car, with white and yellow being longer amounts of time and orange and red being shorter amounts of time.  This is a sort of trivial example because we'd expect buildings closer to the city center to require shorter travel times, but it's still a good proof of concept of how datashader can be used to visualize our results.
+![Toronto Datashader auto times](4_Visualizations/Images/Toronto_Datashader_auto_times.png)
 
 ## Limitations and challenges
 Some of the challenges I ran into during this project included:
